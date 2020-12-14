@@ -80,11 +80,11 @@ class ID_Library:
                 )
                 print('\r', end='')
 
-        uuid4_set = self.__class__.__top_entropy(set(uuid4_list))
-        len16_set = self.__class__.__top_entropy(set(len16_list))
-        len12_set = self.__class__.__top_entropy(set(len12_list))
-        len8_set = self.__class__.__top_entropy(set(len8_list))
-        uuid4_set, len16_set, len12_set, len8_set = self.__class__.__trim(
+        uuid4_set = ID_Library.__top_entropy(set(uuid4_list))
+        len16_set = ID_Library.__top_entropy(set(len16_list))
+        len12_set = ID_Library.__top_entropy(set(len12_list))
+        len8_set = ID_Library.__top_entropy(set(len8_list))
+        uuid4_set, len16_set, len12_set, len8_set = ID_Library.__trim(
             uuid4_set, len16_set, len12_set, len8_set
         )
 
@@ -93,10 +93,10 @@ class ID_Library:
         self.len12_set |= len12_set
         self.len8_set |= len8_set
 
-        self.uuid4_set = self.__class__.__top_entropy(self.uuid4_set)
-        self.len16_set = self.__class__.__top_entropy(self.len16_set)
-        self.len12_set = self.__class__.__top_entropy(self.len12_set)
-        self.len8_set = self.__class__.__top_entropy(self.len8_set)
+        self.uuid4_set = ID_Library.__top_entropy(self.uuid4_set)
+        self.len16_set = ID_Library.__top_entropy(self.len16_set)
+        self.len12_set = ID_Library.__top_entropy(self.len12_set)
+        self.len8_set = ID_Library.__top_entropy(self.len8_set)
 
     @staticmethod
     def __top_entropy(
