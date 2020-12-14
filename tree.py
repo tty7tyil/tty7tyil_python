@@ -17,13 +17,18 @@ class Tree(Generic[TreeDT]):
         return Tree.format_as_string(self)
 
     @staticmethod
-    def format_as_string(tree: Tree, indentation_prefix: str = '', last: bool = True) -> str:
-        trunk_char = '|'
-        branch_char = '+'
-        branch_leading_char = '-'
-        indentation_char = ' '
-        indentation = 3
-
+    def format_as_string(
+        tree: Tree,
+        /,
+        indentation_prefix: str = '',
+        last: bool = True,
+        *,
+        trunk_char: str = '|',
+        branch_char: str = '+',
+        branch_leading_char: str = '-',
+        indentation_char: str = ' ',
+        indentation: int = 3,
+    ) -> str:
         output = '{prefix}{branch}{leading} {content}\n'.format(
             prefix=indentation_prefix,
             branch=branch_char,
