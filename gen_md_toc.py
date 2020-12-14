@@ -17,7 +17,7 @@
 import re
 from typing import Dict, List, Tuple
 
-from tty7tyil import normalize_string as ns
+from tty7tyil_python import normalize_string as ns
 
 FIRST_LEVEL_HEADER_REGEX = re.compile(
     r'^(# .+)$',
