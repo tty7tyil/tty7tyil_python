@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from typing import Dict, List, Tuple
-import fake_useragent as fua
 import random
-import requests
 import time
+from typing import Dict, List, Tuple
+
+import fake_useragent as fua
+import requests
 
 
 class Crawler_Requests_Session(object):

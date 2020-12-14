@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from typing import Tuple
 import re
+from typing import Tuple
 
 # reference: https://gist.github.com/asabaylus/3071099
 # 1. to lower case (1)

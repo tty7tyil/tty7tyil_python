@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from typing import List
-from typing import Set
-from typing import Tuple
 import math
+import random
+import uuid
+from typing import List, Set, Tuple
+
 import numpy
 import pandas
-import random
 import scipy.stats
-import uuid
 
 
 class ID_Library:

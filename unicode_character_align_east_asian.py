@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from typing import Tuple
 import unicodedata as ucd
+from typing import Tuple
 
 # Details about Unicode East Asian Width can be found at:
 # [UAX #11: East Asian Width](https://www.unicode.org/reports/tr11/tr11-36.html)

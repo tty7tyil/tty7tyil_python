@@ -14,9 +14,10 @@
 #     [PEP 457](https://www.python.org/dev/peps/pep-0457/)  
 #     [PEP 570](https://www.python.org/dev/peps/pep-0570/)
 
-from tty7tyil import normalize_string as ns
-from typing import Dict, List, Tuple
 import re
+from typing import Dict, List, Tuple
+
+from tty7tyil import normalize_string as ns
 
 FIRST_LEVEL_HEADER_REGEX = re.compile(
     r'^(# .+)$',

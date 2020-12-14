@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from enum import Enum, unique
-from tty7tyil_python import unicode_character_align_east_asian as uca
 import datetime as dt
+from enum import Enum, unique
+
+from tty7tyil_python import unicode_character_align_east_asian as uca
 
 MESSAGE_TYPE = unique(Enum(
     'MESSAGE_TYPE', (
