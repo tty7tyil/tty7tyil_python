@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Generic, List, Sequence, Tuple, TypeVar
+from typing import Any, Callable, Generic, List, Sequence, Tuple, TypeVar
 
 TreeDT = TypeVar('TreeDT')
 
@@ -23,6 +23,7 @@ class Tree(Generic[TreeDT]):
         indentation_prefix: str = '',
         last: bool = True,
         *,
+        content_parser: Callable[[TreeDT], str] = str,
         trunk_char: str = '|',
         branch_char: str = '+',
         branch_leading_char: str = '-',
@@ -33,7 +34,7 @@ class Tree(Generic[TreeDT]):
             prefix=indentation_prefix,
             branch=branch_char,
             leading=branch_leading_char * (indentation - 2),
-            content=str(tree.data),
+            content=content_parser(tree.data),
         )
         branches_content_list = []
         for i in range(len(tree.branches)):
