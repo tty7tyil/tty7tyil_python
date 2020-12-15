@@ -3,22 +3,22 @@
 
 from __future__ import annotations
 
-from typing import Any, Callable, Generic, List, Sequence, Tuple, TypeVar
+from typing import Callable, Generic, List, Sequence, TypeVar
 
 TreeDT = TypeVar('TreeDT')
 
 
 class Tree(Generic[TreeDT]):
-    def __init__(self, data: TreeDT, branches: Sequence[Tree[TreeDT]] = None):
+    def __init__(self, data: TreeDT, branches: Sequence[Tree[TreeDT]] = tuple()):
         self.data = data
-        self.branches: List[Tree[TreeDT]] = list(branches) if branches is not None else list()
+        self.branches: List[Tree[TreeDT]] = list(branches)
 
     def __str__(self) -> str:
         return Tree.format_as_string(self)
 
     @staticmethod
     def format_as_string(
-        tree: Tree,
+        tree: Tree[TreeDT],
         /,
         indentation_prefix: str = '',
         last: bool = True,
@@ -50,16 +50,13 @@ class Tree(Generic[TreeDT]):
                         )
                     ),
                     True if i == len(tree.branches) - 1 else False,
+                    content_parser=content_parser,
+                    trunk_char=trunk_char,
+                    branch_char=branch_char,
+                    branch_leading_char=branch_leading_char,
+                    indentation_char=indentation_char,
+                    indentation=indentation,
                 )
             )
 
         return ''.join((output, *branches_content_list))
-
-
-class Frozen_Tree(Tree[TreeDT]):
-    # turn list branches into tuple branches, does nothing else
-    def __init__(self, tree: Tree[TreeDT]):
-        self = tree
-        for bi in range(len(self.branches)):
-            self.branches[bi] = Frozen_Tree(self.branches[bi])
-        self.branches: Tuple[Frozen_Tree[TreeDT], ...] = tuple(self.branches)
