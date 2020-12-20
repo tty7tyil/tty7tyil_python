@@ -26,9 +26,63 @@ class MD_Structure_Data:
             MD_Structure_Data.TOC_Header_Data
         ] = MD_Structure_Data.extract_toc(md_file_content)
 
+    FILE_HEADER_BEGIN_COMMENT = '<!-- metadata header ---'
+    FILE_HEADER_END_COMMENT = '---- metadata header -->'
+    __REGEX_FILE_HEADER = re.compile(
+        r'^{fhbc}\n(.+\n)*?{fhec}$'.format(
+            fhbc=repr(FILE_HEADER_BEGIN_COMMENT)[1:-1],
+            fhec=repr(FILE_HEADER_END_COMMENT)[1:-1],
+        ),
+        flags=re.MULTILINE,
+    )
+    __REGEX_FILE_HEADER_DATA_PAIR = re.compile(
+        r' *(.+?) *: *(.*?) *$',
+        flags=re.MULTILINE,
+    )
+
     @staticmethod
-    def extract_file_header(md_file_content: str):
-        pass
+    def extract_file_header(
+        md_file_content: str,
+    ) -> Dict[str, Union[dt.datetime, Tuple[str, ...], None]]:
+        if (m := MD_Structure_Data.__REGEX_FILE_HEADER.search(md_file_content)) is not None:
+            raw_data_pair_list = MD_Structure_Data.__REGEX_FILE_HEADER_DATA_PAIR.findall(
+                md_file_content[m.start():m.end()]
+            )
+            data_pair_dict: Dict[str, Union[dt.datetime, Tuple[str, ...], None]] = dict()
+            for p in raw_data_pair_list:
+                if 'time' in p[0]:
+                    # the datetime string format should be `1970-01-01 00:00:00 Z`
+                    # !!! AND ALWAYS IN UTC !!!
+                    if p[1][-1] == 'Z':
+                        # datetime string
+                        data_pair_dict[p[0]] = dt.datetime(
+                            int(p[1][0:4]),
+                            int(p[1][5:7]),
+                            int(p[1][8:10]),
+                            int(p[1][11:13]),
+                            int(p[1][14:16]),
+                            int(p[1][17:19]),
+                            tzinfo=dt.timezone.utc,
+                        )
+                    else:
+                        raise ValueError('date time string not presented in utc')
+                elif ',' in p[1]:
+                    # string list, separated by comma ','
+                    data_pair_dict[p[0]] = tuple(
+                        e for e in (
+                            re.strip(' ') for re in p[1].split(',')
+                        ) if e != ''
+                    )
+                elif p[1] == '':
+                    # empty value
+                    data_pair_dict[p[0]] = None
+                else:
+                    raise ValueError(
+                        'file header data cannot be interpret as datetime string or string list'
+                    )
+            return data_pair_dict
+        else:
+            return dict()
 
     __REGEX_TOC_HEADER = re.compile(
         r'^(#{1,6}) (.+)$',
