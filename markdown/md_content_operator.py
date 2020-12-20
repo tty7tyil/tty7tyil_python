@@ -7,7 +7,7 @@ import re
 from typing import Dict, List, Tuple, Union
 
 from tty7tyil_python import tree
-from tty7tyil_python.markdown import md_data as mdd
+from tty7tyil_python.markdown import md_structure_data as mdsd
 from tty7tyil_python.string_et_output import normalize_string as ns
 
 TOC_BEGIN_COMMENT = '<!-- GMT TOC BEGIN -->'
@@ -26,7 +26,7 @@ EXIST_TOC_REGEX = re.compile(
 )
 
 def gen_md_toc(
-    toc_tree: tree.Tree[mdd.MD_Data.TOC_Header_Data],
+    toc_tree: tree.Tree[mdsd.MD_Structure_Data.TOC_Header_Data],
     /,
     *,
     include_begin_end_comment: bool = False,
