@@ -12,11 +12,6 @@ from tty7tyil_python import tree
 
 
 class MD_Structure_Data:
-    __REGEX_TOC_HEADER = re.compile(
-        r'^(#{1,6}) (.+)$',
-        flags=re.MULTILINE,
-    )
-
     @dcs.dataclass
     class TOC_Header_Data:
         level_in_file: int
@@ -34,6 +29,11 @@ class MD_Structure_Data:
     @staticmethod
     def extract_file_header(md_file_content: str):
         pass
+
+    __REGEX_TOC_HEADER = re.compile(
+        r'^(#{1,6}) (.+)$',
+        flags=re.MULTILINE,
+    )
 
     @staticmethod
     def extract_toc(md_file_content: str) -> tree.Tree[MD_Structure_Data.TOC_Header_Data]:
