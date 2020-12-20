@@ -58,5 +58,4 @@ class Tree(Generic[TreeDT]):
                     indentation=indentation,
                 )
             )
-
         return ''.join((output, *branches_content_list))
