@@ -8,7 +8,7 @@ import datetime as dt
 import re
 from typing import Dict, List, Tuple, Union
 
-from tty7tyil_python import normalize_string as ns
+from tty7tyil_python.string_et_output import normalize_string as ns
 from tty7tyil_python import tree
 
 
