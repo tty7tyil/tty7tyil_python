@@ -128,16 +128,16 @@ class ID_Library:
                 len8_set.remove(test)
         return uuid4_set, len16_set, len12_set, len8_set
 
-    def uuid4(self, k: int = 1) -> str:
+    def uuid4(self, k: int = 1) -> Tuple[str, ...]:
         return tuple(e[0] for e in random.choices(tuple(self.uuid4_set), k=k))
 
-    def len16(self, k: int = 1) -> str:
+    def len16(self, k: int = 1) -> Tuple[str, ...]:
         return tuple(e[0] for e in random.choices(tuple(self.len16_set), k=k))
 
-    def len12(self, k: int = 1) -> str:
+    def len12(self, k: int = 1) -> Tuple[str, ...]:
         return tuple(e[0] for e in random.choices(tuple(self.len12_set), k=k))
 
-    def len8(self, k: int = 1) -> str:
+    def len8(self, k: int = 1) -> Tuple[str, ...]:
         return tuple(e[0] for e in random.choices(tuple(self.len8_set), k=k))
 
     def __repr__(self) -> str:
