@@ -12,6 +12,11 @@ from tty7tyil_python import tree
 
 
 class MD_Structure_Data:
+    # TODO
+    # - [ ] implement key-like access on toc_tree just like dict (problem: but the data as key is
+    # not necessary unique like in dict)
+    # - [ ] implement `__str__` method
+
     @dcs.dataclass
     class TOC_Header_Data:
         level_in_file: int
