@@ -2,15 +2,16 @@
 # -*- coding: utf-8 -*-
 
 import datetime as dt
-from enum import Enum, unique
+import enum
 
-from tty7tyil_python import unicode_character_align_east_asian as uca
+from tty7tyil_python.string_et_output import unicode_character_align_east_asian as uca
 
-MESSAGE_TYPE = unique(Enum(
-    'MESSAGE_TYPE', (
-        'NORMAL', 'WARNING', 'ERROR'
-    )
-))
+
+@enum.unique
+class MESSAGE_TYPE(enum.Enum):
+    NORMAL = enum.auto()
+    WARNING = enum.auto()
+    ERROR = enum.auto()
 
 
 def print_banner(
