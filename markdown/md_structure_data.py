@@ -23,7 +23,7 @@ class MD_Structure_Data:
         content: str
         serial: int
 
-    def __init__(self, md_file_content: str):
+    def __init__(self, md_file_content: str, /):
         self.file_header: Dict[
             str, Union[dt.datetime, Tuple[str, ...], None]
         ] = MD_Structure_Data.extract_file_header(md_file_content)
